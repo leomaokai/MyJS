@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1 v-text="msg"></h1>
+        <table border="1">
+            <tr>
+                <th>id</th>
+                <th>名称</th>
+                <th>价格</th>
+                <th>数量</th>
+                <th>小计</th>
+            </tr>
+            <tr v-for="item,index in items" :key="item.id">
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.price}}</td>
+                <td><input type="button" value="-" @click="subCount(index)"> {{item.count}} <input type="button"
+                        value="+" @click="addCount(index)"></td>
+                <td>{{(item.price * item.count).toFixed(2)}}</td>
+            </tr>
+        </table>
+        <!-- 使用methos方法实现计算业务 效率较低 -->
+        <h2>使用methos方法实现计算业务</h2>
+        <h3>总计:{{getTotalPrice()}}</h3>
+        <h3>总计:{{getTotalPrice()}}</h3>
+        <h3>总计:{{getTotalPrice()}}</h3>
+        <h3>总计:{{getTotalPrice()}}</h3>
+
+        <!-- 
+            在完成某种业务时,往往页面的结果需要经过多次计算
+            computed 属性就是用来完成业务结果计算的
+            在完成计算同时,也会将计算结果进行缓存
+         -->
+        <h2>使用computed 实现计算属性,vue官方提供的</h2>
+        <!-- 直接使用方法名 -->
+        <h3>总计:{{getTotalPrice2}}</h3>
+        <h3>总计:{{getTotalPrice2}}</h3>
+        <h3>总计:{{getTotalPrice2}}</h3>
+        <h3>总计:{{getTotalPrice2}}</h3>
+        <h3>总计:{{getTotalPrice2}}</h3>
+
+    </div>
+</body>
+
+</html>
+<script src="../js/vue.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            msg: "购物车功能实现",
+            totalPrice: 0,
+            items: [
+                { id: 1, name: "IPhone", count: 1, price: 10.55 },
+                { id: 2, name: "HUAWEI", count: 2, price: 20.22 },
+            ]
+        },
+        methods: {
+            addCount(index) {
+                this.items[index].count++;
+            },
+            subCount(index) {
+                if (this.items[index].count == 0) return;
+                this.items[index].count--;
+            },
+            getTotalPrice() {
+                let total = 0;
+                for (item of this.items) {
+                    total += item.count * item.price;
+                }
+                console.log("执行 methods 方法");
+                return total.toFixed(2);
+            }
+        },
+        computed: {
+            // 只进行一次计算,多次使用缓存结果
+            getTotalPrice2() {
+                let total = 0;
+                for (item of this.items) {
+                    total += item.count * item.price;
+                }
+                console.log("执行 computed 计算属性");
+                return total.toFixed(2);
+            }
+        }
+    });
+</script>

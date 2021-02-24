@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <div>
+            <h2 v-text="msg" v-show="isShow"></h2>
+            <input type="button" value="显示" @click="aaa">
+            <input type="button" value="隐藏" @click="bbb">
+            <input type="button" value="切换显示状态1" @click="ccc">
+            <!-- 直接获取数据并修改 -->
+            <input type="button" value="切换显示状态2" @click="isShow=!isShow">
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script src="../js/vue.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            msg: "hello vue",
+            isShow: true
+        },
+        methods: {
+            aaa() {
+                this.isShow = true;
+            },
+            bbb() {
+                this.isShow = false;
+            },
+            ccc() {
+                this.isShow = !this.isShow;
+            }
+        }
+    });
+</script>

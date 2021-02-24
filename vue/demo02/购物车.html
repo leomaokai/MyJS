@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1 v-text="msg"></h1>
+        <table border="1">
+            <tr>
+                <th>id</th>
+                <th>名称</th>
+                <th>价格</th>
+                <th>数量</th>
+                <th>小计</th>
+            </tr>
+            <tr v-for="item,index in items" :key="item.id">
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.price}}</td>
+                <td><input type="button" value="-" @click="subCount(index)"> {{item.count}} <input type="button"
+                        value="+" @click="addCount(index)"></td>
+                <td>{{(item.price * item.count).toFixed(2)}}</td>
+            </tr>
+        </table>
+        <h3>总计:{{getTotalPrice()}}</h3>
+        <h3>总计:{{totalPrice}}</h3>
+    </div>
+</body>
+
+</html>
+<script src="../js/vue.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            msg: "购物车功能实现",
+            totalPrice: 0,
+            items: [
+                { id: 1, name: "IPhone", count: 1, price: 10.55 },
+                { id: 2, name: "HUAWEI", count: 2, price: 20.22 },
+            ]
+        },
+        methods: {
+            addCount(index) {
+                this.items[index].count++;
+            },
+            subCount(index) {
+                if (this.items[index].count == 0) return;
+                this.items[index].count--;
+            },
+            getTotalPrice() {
+                let total = 0;
+                for (item of this.items) {
+                    total += item.count * item.price;
+                }
+                this.totalPrice = total.toFixed(2);
+                return this.totalPrice;
+            }
+        }
+    });
+</script>

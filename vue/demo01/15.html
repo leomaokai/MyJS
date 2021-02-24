@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <div>
+            <!-- v-for 用来对vue实例中的数据进行遍历 -->
+            <h1>遍历对象</h1>
+            <h2 v-for="(value,key,index) in user">
+                key:{{key}}
+                value:{{value}}
+            </h2>
+            <h1>遍历数组</h1>
+            <h2 v-for="city,index in cities">
+                {{city}}
+            </h2>
+            <h1>遍历数组中含有对象</h1>
+            <h2 v-for="user,index in users" :key="user.id">
+                name:{{user.name.toUpperCase()}}
+                age:{{user.age}}
+                index:{{index+1}}
+            </h2>
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script src="../js/vue.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            user: {
+                name: "kk",
+                age: 11,
+                bir: 2021 - 1 - 1
+            },
+            cities: ["taiyuan", "xuzhou", "nanjing"],
+            users: [
+                { id: "1", name: "kkk", age: 12 },
+                { id: "2", name: "kkkk", age: 13 },
+                { id: "3", name: "kkkkk", age: 14 }
+            ]
+        },
+        methods: {
+        }
+    });
+</script>

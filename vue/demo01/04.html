@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <h2>{{msg}}</h2>
+    </div>
+    <div class="aa">
+        <h2>{{msg}}</h2>
+    </div>
+
+</body>
+
+</html>
+<script src="../js/vue.js"></script>
+<script>
+    new Vue({
+        //element:元素  用来指定vue实例的作用范围
+        // 使用css选择器 id class 推荐id 具有唯一性
+        el: "#app",
+        data: {
+            msg: "hello vue"
+        }
+    });
+    new Vue({
+        el: ".aa",
+        data: {
+            msg: "hello world"
+        }
+    })
+</script>

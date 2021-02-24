@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+    <style>
+        .aa {
+            border: 10px rebeccapurple solid;
+        }
+
+        .bb {
+            border: 10px rgb(33, 196, 41) solid;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <div>
+            <img :width="width" :src="imgSrc" alt="这是图片" :class="isClass?'aa':'bb'" @mouseover="aaa" @mouseout="bbb">
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script src="../js/vue.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            imgSrc: "https://tse3-mm.cn.bing.net/th/id/OIP.TH-Bk8p6gg_bKXh8MUuzvAHaHa?w=137&h=150&c=7&o=5&dpr=1.25&pid=1.7",
+            width: 300,
+            isClass: true
+        },
+        methods: {
+            aaa() {
+                this.imgSrc = "https://tse1-mm.cn.bing.net/th/id/OIP.d3pFMxT93Hi0KGPPfhqvmwHaHa?w=137&h=150&c=7&o=5&dpr=1.25&pid=1.7";
+                this.width = 150;
+                this.isClass = false;
+            },
+            bbb() {
+                this.isClass = true;
+                this.width = 300;
+                this.imgSrc = "https://tse3-mm.cn.bing.net/th/id/OIP.TH-Bk8p6gg_bKXh8MUuzvAHaHa?w=137&h=150&c=7&o=5&dpr=1.25&pid=1.7";
+            }
+        }
+    });
+</script>

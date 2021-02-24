@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+    <!--    引入vue.js-->
+</head>
+
+<body>
+
+    <div id="app">
+        <h2>{{msg}}</h2>
+        <!-- 
+            事件修饰符,决定事件的触发条件和触发机制
+            .stop   停止事件冒泡
+            .prevent    阻止默认行为
+            .self   只触发自身行为
+            .once   只执行一次
+            时间修饰符可以多个连续使用
+         -->
+        <!-- 
+            .stop 用来阻止事件的冒泡
+            事件冒泡:内层事件会传递到外层事件
+            对内层事件进行修饰.stop,阻止冒泡
+        -->
+        <h2>stop事件修饰符</h2>
+        <div style="width: 200px;height: 200px;background:red" @click="parent">
+            <div style="width: 100px;height: 100px;background: green;" @click.stop="child"></div>
+        </div>
+
+        <!-- 
+            .prevent 阻止默认行为
+            href 为默认行为
+         -->
+        <h2>prevent事件修饰符</h2>
+        <a href="https://www.baidu.com" @click.prevent="search">百度</a>
+        <a href="javascript:;" @click="search">百度</a>
+
+        <!-- 
+            .self 只触发自身行为
+            对外层事件修饰,阻止冒泡
+         -->
+        <h2>self事件修饰符</h2>
+        <div style="width: 200px;height: 100px;background:red" @click.self="parent">
+            <div style="width: 100px;height: 50px;background: green;" @click="child"></div>
+            <div style="width: 100px;height: 50px;background: blue;" @click="child"></div>
+        </div>
+
+        <!-- 
+            .once   只能让标签上的事件执行一次
+         -->
+        <h2>一次事件</h2>
+        <input type="button" value="点我" @click.once="clickMe">
+    </div>
+
+</body>
+
+</html>
+<script src="../js/vue.js"></script>
+<script>
+    new Vue({
+        //element:元素  用来指定vue实例的作用范围
+        el: "#app",
+        //data:数据  用来给vue实例对象绑定一系列数据
+        data: {
+            msg: "事件修饰符",
+        },
+        methods: {
+            parent() {
+                alert('parent div event');
+            },
+            child() {
+                alert("child div event");
+            },
+            search() {
+                alert("a click event");
+            },
+            clickMe() {
+                alert("click me");
+            }
+        },
+        computed: {
+
+        }
+    });
+</script>

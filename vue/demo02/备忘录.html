@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+        输入备忘录内容:<input type="text" v-model="tempItem" @keyup.enter="saveItem"><input type="button" value="添加到备忘录"
+            @click="saveItem"><br>
+        <ul v-show="items.length!=0">
+            <li v-for="item,index in items">{{index+1}}. {{item}} <a href="javascript:;"
+                    @click="deleteItem(index)">删除</a></li>
+        </ul>
+        <h5 v-show="items.length==0">当前备忘录中没有内容</h5>
+        <h3>当前备忘录总数:{{items.length}}</h3>
+        <input type="button" value="清空备忘录" @click="clean">
+    </div>
+</body>
+
+</html>
+<script src="../js/vue.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            msg: "备忘录功能实现",
+            items: [
+                "好好学习",
+                "天天向上",
+                "study vue",
+            ],
+            tempItem: "",
+        },
+        methods: {
+            clean() {
+                this.items = [];
+            },
+            saveItem() {
+                if (!this.tempItem) return;
+                this.items.push(this.tempItem);
+                this.tempItem = "";
+            },
+            deleteItem(index) {
+                console.log(index);
+                // index 删除的起始下标
+                // 1 表示删除一个
+                this.items.splice(index, 1);
+            }
+        }
+    });
+</script>

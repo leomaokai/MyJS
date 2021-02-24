@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <h2>{{msg}}</h2>
+        <!--    {{属性名}}使用这种方式获取数据时可以进行相关的运算-->
+        <h2>{{msg + ' world'}}</h2>
+        <h2>{{msg == 'hello vue'}}</h2>
+        <h2>{{msg.toUpperCase()}}</h2>
+        <h2>{{age + 1}}</h2>
+    </div>
+
+</body>
+
+</html>
+<script src="../js/vue.js"></script>
+<script>
+    new Vue({
+        //element:元素  用来指定vue实例的作用范围
+        el: "#app",
+        data: {
+            msg: "hello vue",
+            age: 23,
+        }
+    });
+</script>

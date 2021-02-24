@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <div>
+            <!-- 
+                v-if v-show :控制页面中的标签是否展示和隐藏
+                v-if="true" 展示  v-if="false" 隐藏 
+                v-show 同理
+                区别:
+                v-show 在控制标签是否展示时使用css中display 属性
+                v-if 在控制标签是否展示时直接操作dom元素(删除和添加),影响dom树
+            -->
+            <h1 v-text="msg" v-if="true"></h1>
+            <!-- 推荐使用v-show 数据量大时,切换频繁时 -->
+            <h2 v-text="age" v-show="isShow"></h2>
+            <input type="button" value="点我显示" @click="aaa">
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script src="../js/vue.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            msg: "hello vue",
+            age: 11,
+            isShow: false
+        },
+        methods: {
+            aaa() {
+                this.isShow = true;
+            }
+        }
+    });
+</script>

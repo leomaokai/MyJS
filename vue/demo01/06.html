@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <h2>{{msg}}</h2>
+        <h2 v-text="msg"></h2>
+        <h2 v-html="msg"></h2>
+
+        <!-- vue 中的事件: 
+            1. 绑定事件 v-on
+            2. 事件处理函数,统一定义在vue实例的methods属性中
+            事件的三要素: 事件源  事件  发生事件的处理函数(监听器)
+         -->
+        <input type="button" value="点我" v-on:click="aaa" v-on:mouseover="bbb" v-on:mouseout="ccc">
+
+    </div>
+
+</body>
+
+</html>
+<script src="../js/vue.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        // 给vue实例定义数据
+        data: {
+            msg: "hello vue",
+        },
+        // 用来给当前的vue实例对象声明一系列的方法
+        methods: {
+            aaa: function () {
+                alert('aaa');
+            },
+            bbb: function () {
+                console.log("bbb");
+            },
+            ccc: function () {
+                console.log("ccc");
+            }
+        }
+    });
+</script>

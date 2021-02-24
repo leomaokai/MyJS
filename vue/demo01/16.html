@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <h2 v-text="msg"></h2>
+        <div>
+            <!-- v-model 用来绑定html标签(form)的value属性交给vue实例进行管理  -->
+            <!-- 实现双向绑定 -->
+            <input type="text" v-model="msg">
+
+            <input type="button" value="change" @click="change">
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script src="../js/vue.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            msg: "hello vue"
+        },
+        methods: {
+            change() {
+                this.msg = "hello world";
+            }
+        }
+    });
+</script>

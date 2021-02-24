@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- 测试异步请求 -->
+    </div>
+
+</body>
+
+</html>
+<script src="../js/axios.min.js"></script>
+<script>
+    // 发送axios 的post请求
+    // 参数1: url地址   参送2: 请求数据
+    axios
+        .post("http://localhost:8080/user", {
+            name: "zhangsan",
+            age: 11,
+            bir: "2021-02-02"
+        })
+        // 存在相应返回结果使用then
+        .then((res) => {
+            console.log(res.data);
+        });
+
+    // 并发请求
+    function user() {
+        return axios.get("http://localhost:8080/user");
+    }
+    function demo() {
+        return axios.get("http://localhost:8080/demo");
+    }
+    axios.all([demo(), user()])
+        .then(axios.spread((res1, res2) => {
+            console.log(res1.data);
+            console.log(res2.data);
+        }));
+</script>

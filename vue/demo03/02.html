@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <h2>{{msg}}</h2>
+        <!-- 
+            按键修饰符,用来与键盘中按键事件绑定在一起
+            用来修饰特定的按键事件的修饰符
+            .enter .tab .delete .esc .space .up .down .left .rigth
+         -->
+        <!-- .enter -->
+        <input type="text" v-model="msg" @keyup.enter.delete="keyUp">
+
+    </div>
+
+</body>
+
+</html>
+<script src="../js/vue.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            msg: "按键修饰符",
+        },
+        methods: {
+            keyUp() {
+                alert("hello vue");
+            }
+        },
+        computed: {
+
+        }
+    });
+</script>

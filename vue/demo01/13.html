@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+    <style>
+        .aa {
+            border: 10px rebeccapurple solid;
+        }
+
+        .bb {
+            border: 10px darkblue solid;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <div>
+            <!-- v-bind 绑定,将html标签中的相关属性绑定vue实例中
+                通过vue实例中数据的改变影响标签中属性值改变
+                v-bind:属性
+                v-bind:属性名  ===> :属性名
+            -->
+            <img :width="width" v-bind:src="imgSrc" alt="这是图片" @mouseover="aaa" :class="isClass?'aa':'bb'">
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script src="../js/vue.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            imgSrc: "https://tse3-mm.cn.bing.net/th/id/OIP.TH-Bk8p6gg_bKXh8MUuzvAHaHa?w=137&h=150&c=7&o=5&dpr=1.25&pid=1.7",
+            width: 300,
+            isClass: true
+        },
+        methods: {
+            aaa() {
+                this.imgSrc = "https://tse1-mm.cn.bing.net/th/id/OIP.d3pFMxT93Hi0KGPPfhqvmwHaHa?w=137&h=150&c=7&o=5&dpr=1.25&pid=1.7";
+                this.width = 150;
+                this.isClass = false;
+            }
+        }
+    });
+</script>

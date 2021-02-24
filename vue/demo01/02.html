@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <h2>{{username}}</h2>
+        <h2>{{age}}</h2>
+        <h2>{{user}}</h2>
+        <h2>{{user.name}}</h2>
+        <h2>{{user.des}}</h2>
+        <h2>{{array}}</h2>
+        <h2>{{array[0]}}</h2>
+        <h2>{{users}}</h2>
+        <h2>{{users[0]}}</h2>
+        <h2>{{users[0].name}}--{{users[0].age}}</h2>
+        <h2>{{users[1].name}}--{{users[1].age}}</h2>
+        <h2>{{users[2].name}}--{{users[2].age}}</h2>
+    </div>
+
+</body>
+
+</html>
+<script src="../js/vue.js"></script>
+<script>
+    new Vue({
+        //element:元素  用来指定vue实例的作用范围
+        el: "#app",
+        //data:数据  用来给vue实例对象绑定一系列数据
+        data: {
+            // 字符串
+            msg: "hello Vue",
+            username: "kk",
+            // 整形
+            age: 11,
+            // 对象
+            user: { name: "leo", des: "hhxx" },
+            // 数组
+            array: [1, 2, 3, 4, 5],
+            // 数组对象
+            users: [
+                { name: "a", age: 12 },
+                { name: "b", age: 13 },
+                { name: "c", age: 14 },
+            ]
+        }
+    });
+</script>

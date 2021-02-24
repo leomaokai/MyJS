@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+    <!--    引入vue.js-->
+</head>
+
+<body>
+
+    <div id="app">
+        {{msg}}
+        <h2>{{msg}}</h2>
+        <span>
+            <h3>{{msg}}</h3>
+            <span>
+                <span>{{msg}}</span>
+                {{username}}
+            </span>
+        </span>
+    </div>
+
+</body>
+
+</html>
+<script src="../js/vue.js"></script>
+<script>
+    new Vue({
+        //element:元素  用来指定vue实例的作用范围
+        el: "#app",
+        //data:数据  用来给vue实例对象绑定一系列数据
+        data: {
+            msg: "hello Vue",
+            username: "kk",
+        }
+    });
+</script>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <h2>{{age}}</h2>
+
+        <!-- vue 绑定事件 
+                1. v-on:事件名
+                2. 简化写法 v-on:  ==>  @事件名
+         -->
+        <div>
+            <input type="button" value="点我年龄加1" @click="aaa">
+        </div>
+        <div>
+            <input type="button" value="点我年龄减1" @click="bbb">
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script src="../js/vue.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            msg: "hello vue",
+            age: 11
+        },
+        methods: {
+            // es5版本
+            aaa: function () {
+                this.age++;
+            },
+            // 事件简化写法,es6 版本
+            bbb() {
+                this.age--;
+            }
+        }
+    });
+</script>

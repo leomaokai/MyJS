@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <h2>{{age}}</h2>
+        <div>
+            <!-- 传参  @事件(参数,...)-->
+            <input type="button" value="点我改变" @click="chageAge(10,'hello worle')">
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script src="../js/vue.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            msg: "hello vue",
+            age: 11
+        },
+        methods: {
+            chageAge(number, str) {
+                this.age = this.age + number;
+                this.msg = str;
+            }
+        }
+    });
+</script>

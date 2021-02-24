@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <!--    v-text v-html 直接获取data中的数据-->
+        <h2 v-text="msg"></h2>
+        <h2 v-html="msg"></h2>
+        <!--    使用{{msg}} 取值不会将标签的原始数据覆盖-->
+        <!--    v-text 取数据方式会使原始数据覆盖-->
+        <h2>{{msg}} 你好</h2>
+        <h2 v-text="msg">hhhh</h2>
+        <h2><span v-text="msg"></span> hhhh</h2>
+        <!--    {{msg}} 容易出现插值闪烁-->
+        <!--    v-text 获取数据时不会出现插值闪烁-->
+        <!--    v-test: 将获取的数据直接以文本的方式渲染到标签内部
+        v-html: 将获取数据中含有html标签解析之后渲染到对应标签内部
+-->
+        <h2 v-text="test"></h2>
+        <h2 v-html="test"></h2>
+    </div>
+
+</body>
+
+</html>
+<script src="../js/vue.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            msg: "hello vue",
+            test: "<a href='https://baidu.com'>百度</a>"
+        }
+    });
+</script>
