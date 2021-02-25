@@ -1,0 +1,81 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 组件</title>
+</head>
+
+<body>
+    <div id="app">
+        <users></users>
+    </div>
+</body>
+
+</html>
+<template id="test">
+    <!-- 在组件中定义的数据只能在当前组件使用 -->
+    <div>
+        <h3>{{msg}}</h3>
+        <h3 v-text='name'></h3>
+        <h3 v-text='age'></h3>
+        <button @click="changeAge1">+</button>
+        <h3>{{ageSqrt}}</h3>
+        <h3>{{ageSqrt}}</h3>
+        <h3 v-for="item in items" :key="item.id">{{item.name}}{{item.age}}</h3>
+    </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+
+    const users = {
+        // 定义组件html标签内容
+        template: "#test",
+        // 定义组件数据,在组件中定义的数据只能在当前组件使用
+        // 语法  data:function(){return{}}    data(){return{}}
+        data() {
+            return {
+                msg: "vue 组件定义data,methods,生命周期...",
+                name: "张三",
+                age: 11,
+                items: [
+                    { id: 1, name: 'kk1', age: 11 },
+                    { id: 2, name: 'kk2', age: 12 },
+                    { id: 3, name: 'kk3', age: 13 },
+                ]
+            };
+        },
+        // methods事件属性写法与之前一致
+        methods: {
+            changeAge1() {
+                this.age++;
+            }
+        },
+        // 计算属性写法一致
+        computed: {
+            ageSqrt() {
+                console.log("ageSqrt");
+                return this.age * this.age;
+            }
+        },
+        // 生命周期写法与之前一致
+        // created() {
+        //     axios.get("url").then(res => {
+        //         this.items = res.data;
+        //     })
+        // }
+    };
+    const app = new Vue({
+        el: "#app",
+        data: {
+        },
+        methods: {
+        },
+        computed: {
+        },
+        components: {
+            users,
+        }
+    });
+
+
+</script>

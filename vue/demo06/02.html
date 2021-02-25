@@ -1,0 +1,56 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 局部组件</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1 v-text="msg"></h1>
+
+        <!-- 使用局部组件 -->
+        <login></login>
+        <login></login>
+        <login></login>
+        <register></register>
+        <test></test>
+    </div>
+</body>
+
+</html>
+<script src="../js/vue.js"></script>
+<script>
+
+    // 登录组件的配置对象
+    const test = {
+        template: "<div><h3>组件第二种定义方法</h3></div>"
+    };
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            msg: "局部组件",
+        },
+        methods: {
+
+        },
+        computed: {
+
+        },
+        // 这里注册的组件为局部组件
+        components: {
+            login: {
+                template: "<div><h3>用户登录</h3></div>",
+            },
+            register: {
+                template: "<div><h3>用户注册</h3></div>",
+            },
+            // 局部组件第二种定义方法
+            // test: test,
+            test,
+        }
+    });
+
+
+</script>

@@ -1,0 +1,50 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 局部组件的第二种开发方式</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1 v-text="msg"></h1>
+        <login></login>
+    </div>
+</body>
+
+</html>
+<!-- 局部对象的第二种开发方式 -->
+<template id="loginTemplate">
+    <div>
+        <h3>用户登录</h3>
+        <button>+</button>
+        <input type="text">
+    </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+
+    // 定义登录组件的配置对象
+    const login = {
+        template: "#loginTemplate"
+    };
+    const app = new Vue({
+        el: "#app",
+        data: {
+            msg: "局部组件",
+        },
+        methods: {
+
+        },
+        computed: {
+
+        },
+        // 这里注册的组件为局部组件
+        components: {
+            // 将配置对象注册到局部
+            login,
+        }
+    });
+
+
+</script>

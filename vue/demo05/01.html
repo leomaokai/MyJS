@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>vue的生命周期</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1 id="sp">{{msg}}</h1>
+        <input type="button" value="修改数据1" @click="changeData1">
+        <input type="button" value="修改数据2" @click="changeData2">
+        <input type="text" v-model="msg">
+        <!-- 
+            vue 的生命周期分为三个阶段:
+            1.初始化阶段
+                beforeCreate(),created(),beforeMount(),mounted()
+            2.运行阶段
+                beforeUpdate(),updated()
+            3.销毁阶段
+                beforeDestroy(),destroyed()
+         -->
+    </div>
+</body>
+
+</html>
+<script src="../js/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            msg: "Vue 的生命周期",
+        },
+        methods: {
+            aaa() {
+                return "hello vue";
+            },
+            changeData1() {
+                this.msg = "修改数据1";
+            },
+            changeData2() {
+                this.msg = "修改数据2";
+            },
+        },
+        computed: {},
+
+        // 第一个执行的生命周期函数
+        // 在这个函数执行时,vue实例仅仅完成了内部事件和使用生命周期方法初始化
+        beforeCreate() {
+            console.log("beforeCreate()==>" + this.msg);
+            // beforeCreate()==>undefined
+        },
+        // 第二个执行的生命周期函数
+        // 执行这个方法时,vue实例已经完成了data,methods,computed等属性的初始化
+        // 以及语法的校验
+        created() {
+            console.log("created()==>" + this.msg);
+            // created()==>Vue 的生命周期
+            console.log("created()==>" + this.aaa());
+            // created()==>hello vue
+            // 后端数据推荐在created函数内初始化
+        },
+        // 第三个执行的生命周期函数
+        // 在这个函数执行时,vue实例仅仅是将el属性指向的html编译成vue模板
+        // 此时并没有完成模板内容的赋值
+        beforeMount() {
+            let temp = document.getElementById("sp").innerText;
+            console.log("beforeMount()==>" + temp);
+            // beforeMount()==>{{msg}}
+            // 后端数据同样推荐在beforeMount函数内初始化
+        },
+        // 第四个执行的生命周期函数
+        // 在这个函数执行时,vue实例已经将data中的数据渲染到编译的模板中
+        // 并形成虚拟DOM去替换el指向的DOM
+        mounted() {
+            let temp = document.getElementById("sp").innerText;
+            console.log("mounted()==>" + temp);
+            // mounted()==>Vue 的生命周期
+        },
+        // 完成初始化,进入运行状态
+        // 第五个执行生命周期的函数
+        // 只要data数据发生改变就执行此函数
+        // 但修改后的数据还没有重新渲染到模板
+        beforeUpdate() {
+            let temp = document.getElementById("sp").innerText;
+            console.log("beforeUpdate()==>" + temp);
+            // 1.beforeUpdate()==>Vue 的生命周期
+            // 2.beforeUpdate()==>修改数据1
+        },
+        // 第六个执行生命周期的函数
+        // 修改后的数据成功渲染到模板后执行
+        updated() {
+            let temp = document.getElementById("sp").innerText;
+            console.log("updated()==>" + temp);
+            // 1.updated()==>修改数据1
+            // 2.updated()==>修改数据2
+        },
+        // 进入销毁阶段
+        // 第七个执行的生命周期函数
+        // 在这个函数执行时,vue实例仅仅是开始销毁
+        // data,methods等还是存在的
+        beforeDestroy() {
+            console.log("deforeDestroy()==>" + this.msg);
+        },
+        // 第八个执行的生命周期函数
+        // 执行这个函数时,vue实例上的events childcomponent 监听机制等销毁
+        // 数据等依旧存在
+        destroyed() {
+            console.log("destroyed()==>" + this.msg);
+        }
+    });
+</script>
