@@ -1,0 +1,69 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 组件数据传递</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 将父组件事件传递给子组件 @别名="父组件事件名" -->
+        <!-- 将子组件中的数据传递给父组件需要通过事件传递 -->
+        <test @pc-test="pTest" @hello="hello"></test>
+    </div>
+</body>
+
+</html>
+<template id="test">
+    <div>
+        <h2>{{msg}}</h2>
+        <button @click="cTest">点我触发事件</button>
+    </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+
+    const test = {
+        template: "#test",
+        data() {
+            return {
+                msg: "父组件事件传递给子组件",
+                name: "lisi",
+            };
+        },
+        methods: {
+            cTest() {
+                alert("子组件中定义的事件");
+                // 调用父组件中的事件 pTest
+                this.$emit('pc-test');
+                // 通过事件传递参数将子组件中数据传递给父组件
+                this.$emit('hello', this.name);
+            }
+        },
+    };
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            users: { id: 1, name: "zhangsan", age: 11 }
+        },
+        methods: {
+            pTest() {
+                alert("父组件中定义的事件");
+            },
+            hello(name) {
+                alert("hello" + name);
+                this.users.name = name;
+                // 通过子组件的数据修改父组件中的数据
+                console.log(this.users.name);
+            }
+        },
+        computed: {
+        },
+        components: {
+            test,
+        }
+    });
+
+
+</script>

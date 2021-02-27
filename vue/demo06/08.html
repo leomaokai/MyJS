@@ -1,0 +1,70 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 组件插槽</title>
+</head>
+
+<body>
+    <div id="app">
+        <test>
+            <!-- h5 标签替换插槽 -->
+            <h5 slot="aa">用户自定义slot内容</h5>
+        </test>
+        <hr>
+        <test>
+            <!-- 指定使用哪个插槽 -->
+            <button slot="bb">++</button>
+            <input type="text" slot="aa">
+        </test>
+        <hr>
+        <!-- 使用默认扩展 -->
+        <test></test>
+    </div>
+</body>
+
+</html>
+<template id="test">
+    <div>
+        <!-- 具名插槽 -->
+        <slot name="aa">
+            <span>默认扩展</span>
+        </slot>
+        <h2>{{msg}}</h2>
+        <!-- 插槽扩展组件 -->
+        <!-- slot 内可以写默认扩展 -->
+        <slot name="bb">
+            <span>默认扩展</span>
+        </slot>
+    </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+    // slot 插槽 用来扩展自定义组件,让组件变得更加灵活
+    // 插槽必须配合组件使用,类似于占位符,用户扩展
+    const test = {
+        template: "#test",
+        data() {
+            return {
+                msg: "组件中插槽使用",
+            };
+        },
+        methods: {
+        },
+    };
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+        },
+        methods: {
+        },
+        computed: {
+        },
+        components: {
+            test,
+        }
+    });
+
+
+</script>

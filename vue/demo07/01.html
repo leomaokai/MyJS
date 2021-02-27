@@ -1,0 +1,77 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 路由</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+
+        <a href="#/">无</a>
+        <a href="#/test1">test1</a>
+        <a href="#/test2">test2</a>
+        <!-- 指定路由的组件在哪里展示 router-view -->
+        <router-view></router-view>
+    </div>
+</body>
+
+</html>
+<template id="test1">
+    <div>
+        <h2>{{msg1}}</h2>
+    </div>
+</template>
+<template id="test2">
+    <div>
+        <h2>{{msg2}}</h2>
+    </div>
+</template>
+<script src="../js/vue.js"></script>
+<script src="../js/vue-router.js"></script>
+<script>
+    const test1 = {
+        template: "#test1",
+        data() {
+            return {
+                msg1: "test1组件",
+            };
+        },
+    };
+    const test2 = {
+        template: "#test2",
+        data() {
+            return {
+                msg2: "test2组件",
+            };
+        },
+    };
+    // 创建路由对象并定义路由规则
+    const router = new VueRouter({
+        // 定义一系列规则
+        routes: [
+            // 定义具体的某个组件的路由规则
+            // path 指定对应的请求路径
+            // component 指定路径对应的组件
+            { path: '/test1', component: test1 },
+            { path: '/test2', component: test2 }
+        ]
+    });
+    const app = new Vue({
+        el: "#app",
+        data: {
+            msg: "Vue Router",
+        },
+        methods: {},
+        computed: {},
+        // 局部组件不再使用components管理
+        // 而是交给路由管理
+        // components: {
+        //     test1,
+        //     test2,
+        // }
+        // 注册路由
+        router: router,
+    });
+</script>

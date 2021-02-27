@@ -1,0 +1,58 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 组件数据传递</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 父组件向子组件传递一个静态数据 -->
+        <test name="I am zhangsan"></test>
+    </div>
+</body>
+
+</html>
+<template id="test">
+    <div>
+        <h1>{{msg}}</h1>
+        <!-- 子组件使用传递来的数据 -->
+        <h2>{{name}}</h2>
+        <h2>{{childName}}</h2>
+    </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+
+    const test = {
+        template: "#test",
+        data() {
+            return {
+                msg: "父组件向子组件传递数据",
+                // 重复定义数据以props为主
+                // 将props数据与data数据绑定
+                childName: this.name,
+            };
+        },
+        methods: {
+        },
+        // props 属性用来接收组件传递数据
+        props: ['name'],
+    };
+
+    // 在vue中父组件向子组件传递数据可以用 prop 属性完成
+    const app = new Vue({
+        el: "#app",
+        data: {
+        },
+        methods: {
+        },
+        computed: {
+        },
+        components: {
+            test,
+        }
+    });
+
+
+</script>

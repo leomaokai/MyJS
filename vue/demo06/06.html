@@ -1,0 +1,60 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 组件数据传递</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 父组件向子组件传递一个动态数据 :别名="父组件数据名"-->
+        <test v-bind:cname="name"></test>
+        <!-- 父组件中name发生变化子组件也会发生变化 -->
+        <!-- 单向数据流,父组件中变化流向子组件 -->
+        <input type="text" v-model="name">
+    </div>
+</body>
+
+</html>
+<template id="test">
+    <div>
+        <h1>{{msg}}</h1>
+        <!-- 不建议在子组件中改变父组件的数据 -->
+        <h2>{{cname}}</h2>
+    </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+
+    const test = {
+        template: "#test",
+        data() {
+            return {
+                msg: "父组件向子组件传递数据",
+            };
+        },
+        methods: {
+            changName() {
+                this.cname = "I am Lisi";
+            }
+        },
+        // props 属性用来接收组件传递数据
+        props: ['cname'],
+    };
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            name: "I am Zhangsan",
+        },
+        methods: {
+        },
+        computed: {
+        },
+        components: {
+            test,
+        }
+    });
+
+
+</script>
