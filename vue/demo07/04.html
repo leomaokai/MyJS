@@ -1,0 +1,69 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 路由</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <!-- 切换路由 -->
+        <!-- 1.获取?后传递的参数,this.$route.query -->
+        <router-link to="/test1?id=1&name=zhangsan">test1</router-link>
+        <!-- 2.获取路径中的参数,this.$route.params -->
+        <router-link to="/test2/2/lisi">test2</router-link>
+        <router-view></router-view>
+    </div>
+</body>
+
+</html>
+<script src="../js/vue.js"></script>
+<script src="../js/vue-router.js"></script>
+<script>
+    const test1 = {
+        template: "<div><h1>test1组件</h1></div>",
+        data() {
+            return {};
+        },
+        methods: {
+        },
+        created() {
+            // 获取路由路径中的参送
+            // 1.获取queryString(url?id)中传递参数
+            // this.$route 当前路由对象   this.$router 路由管理对象
+            console.log(this.$route.query.id);
+            console.log(this.$route.query.name);
+        }
+    };
+    const test2 = {
+        template: "<div><h1>test2组件</h1></div>",
+        data() {
+            return {};
+        },
+        methods: {
+
+        },
+        created() {
+            console.log(this.$route.params.id);
+            console.log(this.$route.params.name);
+        }
+    };
+    const router = new VueRouter({
+        routes: [
+            { path: '/', redirect: '/test1' },
+            { path: '/test1', name: "test1", component: test1 },
+            // 修改路径规则使其支持restful url/:id
+            { path: '/test2/:id/:name', name: "test2", component: test2 }
+        ]
+    });
+    const app = new Vue({
+        el: "#app",
+        data: {
+            msg: "Vue Router 参数传递",
+        },
+        methods: {
+        },
+        router,
+    });
+</script>

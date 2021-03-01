@@ -1,0 +1,59 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 路由</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <!-- 通过使用标签的方式直接切换路由菜单 -->
+        <router-link to="/test1" tag="button">test1(link)</router-link>
+        <router-link to="/test2" tag="button">test2(link)</router-link>
+
+        <!-- 通过js代码的方式动态地切换路由 -->
+        <hr>
+        <button @click="test1Button">test1ToTest2</button>
+        <button @click="test2Button">test2Totest1</button>
+        <router-view></router-view>
+    </div>
+</body>
+
+</html>
+<script src="../js/vue.js"></script>
+<script src="../js/vue-router.js"></script>
+<script>
+    const test1 = {
+        template: "<div><h1>test1组件</h1></div>",
+    };
+    const test2 = {
+        template: "<div><h1>test2组件</h1></div>",
+    };
+    const router = new VueRouter({
+        routes: [
+            { path: '/', redirect: '/test1' },
+            { path: '/test1', name: "test1", component: test1 },
+            { path: '/test2', name: "test2", component: test2 }
+        ]
+    });
+    const app = new Vue({
+        el: "#app",
+        data: {
+            msg: "Vue Router 动态切换",
+        },
+        methods: {
+            test1Button() {
+                // 切换的路由路径
+                // this.$router.push("/test2");
+                // this.$router.push({ path: '/test2' });
+                // 根据名称切换路由,推荐使用
+                this.$router.push({ name: "test2" });
+            },
+            test2Button() {
+                this.$router.push("/test1");
+            }
+        },
+        router,
+    });
+</script>

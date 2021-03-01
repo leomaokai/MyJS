@@ -1,0 +1,97 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 路由</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <router-link to="/products">商品管理</router-link>
+        <router-view></router-view>
+    </div>
+</body>
+
+</html>
+<template id="productsTemplate">
+    <div>
+        <h3>商品列表</h3>
+        <!-- <a href="#/add">添加商品信息</a> -->
+        <a href="#/products/add">添加商品信息</a>
+        <table border="1">
+            <tr>
+                <th>编号</th>
+                <th>名称</th>
+                <th>价格</th>
+                <th>生产日期</th>
+                <th>操作</th>
+            </tr>
+            <tr>
+                <th>1</th>
+                <th>zhangsan</th>
+                <th>20</th>
+                <th>2021-03-01</th>
+                <th><a href="javascript:;">删除</a> <a href="javascript:;"
+                        @click="editProduct({name:'hello',price:1})">修改</a></th>
+            </tr>
+        </table>
+        <!-- 展示子路由 -->
+        <router-view></router-view>
+    </div>
+</template>
+<script src="../js/vue.js"></script>
+<script src="../js/vue-router.js"></script>
+<script>
+    const products = {
+        template: "#productsTemplate",
+        methods: {
+            editProduct(user) {
+                console.log(user);
+                // query 将 user 数据传递
+                this.$router.push({ path: '/products/edit', query: user });
+            }
+        }
+    };
+    const add = {
+        template: "<div><form actiom=''>商品名称:<input type='text'><br> 商品价格:<input type='text'></form></div>"
+    };
+    const edit = {
+        template: "<div><form actiom=''>商品名称:<input type='text' v-model='user.name'><br> 商品价格:<input type='text' v-model='user.price'></form></div>",
+        data() {
+            return {
+                user: {}
+            };
+        },
+        methods: {},
+        created() {
+            console.log(this.$route.query);
+            this.user = this.$route.query;
+        }
+    };
+    const router = new VueRouter({
+        routes: [
+            { path: '/', redirect: '/products' },
+            {
+                path: '/products',
+                name: 'products',
+                component: products,
+                // 子路由
+                children: [
+                    // 子路由的path不能以 / 开头
+                    { path: 'add', component: add },
+                    { path: 'edit', component: edit }
+                ]
+            },
+        ]
+    });
+    const app = new Vue({
+        el: "#app",
+        data: {
+            msg: "Vue Router 嵌套路由",
+        },
+        methods: {
+        },
+        router,
+    });
+</script>

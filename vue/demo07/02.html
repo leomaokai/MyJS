@@ -1,0 +1,49 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 路由</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <a href="#/test1">test1</a>
+        <a href="#/test2">test2</a>
+        <a href="#/">无</a>
+        <br>
+        <!-- router-link 标签,用来替换a标签,不用显示加 # -->
+        <!-- to 指定路由路径 tag 指定router-link底层渲染标签,默认a -->
+        <router-link to="/test1" tag="a">test1(link)</router-link>
+        <router-link to="/test2" tag="button">test2(link)</router-link>
+        <router-view></router-view>
+    </div>
+</body>
+
+</html>
+<script src="../js/vue.js"></script>
+<script src="../js/vue-router.js"></script>
+<script>
+    const test1 = {
+        template: "<div><h1>test1组件</h1></div>",
+    };
+    const test2 = {
+        template: "<div><h1>test2组件</h1></div>",
+    };
+    const router = new VueRouter({
+        routes: [
+            // 默认路由规则 redirect:路由路径的重定向
+            { path: '/', redirect: '/test1' },
+
+            { path: '/test1', component: test1 },
+            { path: '/test2', component: test2 }
+        ]
+    });
+    const app = new Vue({
+        el: "#app",
+        data: {
+            msg: "Vue Router link标签及默认路由",
+        },
+        router,
+    });
+</script>
