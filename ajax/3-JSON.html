@@ -1,0 +1,53 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="result"></div>
+</body>
+
+</html>
+<style>
+    #resutl {
+        width: 200px;
+        height: 100px;
+        border: solid 1px;
+    }
+</style>
+<script>
+    const result = document.getElementById('result');
+    // 键盘按下事件
+    window.onkeydown = function () {
+        const xhr = new XMLHttpRequest();
+        // 设置响应体数据的类型
+        xhr.responseType = 'json'; // 将响应得到的 JSON 转为对象
+
+        xhr.open('GET', 'http://localhost:8080/json-server');
+        // 解决IE 缓存问题 加一个时间戳
+        // xhr.open('GET', 'http://localhost:8080/ie?t=' + Data.now());
+        xhr.send();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    /*
+                        服务端对对象进行字符串转换 
+                        let str=JSON.stringify(data); 
+                        response.send(str);
+                    */
+                    // result.innerHTML = xhr.response;
+                    // 手动数据转化
+                    // let data=JSON.parse(xhr.response);
+                    // result.innerHTML=data;
+
+                    // 自动转换(需要设置响应体数据类型)
+                    result.innerHTML = xhr.response;
+                }
+            }
+        }
+    }
+</script>

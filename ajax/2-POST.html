@@ -1,0 +1,50 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="result"></div>
+</body>
+
+</html>
+<style>
+    #result {
+        width: 200px;
+        height: 100px;
+        border: solid 1px;
+    }
+</style>
+<script>
+    const result = document.getElementById("result");
+    // 绑定事件
+    result.addEventListener("mouseover", function () {
+        // 1.创建对象
+        const xhr = new XMLHttpRequest();
+        // 2.初始化 设置类型与 URL
+        xhr.open('POST', 'http://localhost:8080/hello');
+        // 设置请求头
+        /*
+            预定义
+            自定义:需要服务端设置  response.setHeader('');
+        */
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.setRequestHeader('Authorization', 'tokenStr');
+        // 3.发送 +数据,格式灵活,但需要与服务端对应
+        // xhr.send("数据");
+        xhr.send('a=100&b=200&c=300');
+        // xhr.send('a:100&b:200&c:300');
+        // 4.事件绑定
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    result.innerHTML = xhr.response;
+                }
+            }
+        }
+    });
+</script>

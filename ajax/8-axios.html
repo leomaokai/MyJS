@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script></script>
+</head>
+
+<body>
+    <button>GET</button>
+    <button>POST</button>
+    <button>AJAX</button>
+
+    <script>
+        const btns = document.querySelectorAll('button');
+
+        btns[0].onclick = function () {
+            axios.get(
+                // url
+                'http://localhost:8080/server',
+                {
+                    // 请求体
+                    username: 'admin',
+                    password: '111'
+                },
+                {
+                    // 对象
+                    params: {
+                        id: kk,
+                    },
+                    // 请求头信息
+                    headers: {
+                        Authorization: "tokenStr"
+                    },
+
+                }).then(res => {
+                    console.log(res);
+                })
+        };
+        btns[1].onclick = function () {
+            axios.post(
+                // url
+                'http://localhost:8080/server',
+                {
+                    // 请求体
+                    username: 'admin',
+                    password: '111'
+                },
+                {
+                    // url参数
+                    params: {
+                        id: kk,
+                    },
+                    // 请求头信息
+                    headers: {
+                        Authorization: "tokenStr"
+                    },
+
+                }).then(res => {
+                    console.log(res);
+                })
+        }
+        btns[2].onclick = function () {
+            axios({
+                // 请求方法
+                method: 'POST',
+                // url
+                url: '',
+                // url参数
+                params: {
+                    id: 10,
+                },
+                // 头信息
+                headers: {
+                    a: 100,
+                    b: 100
+                },
+                // 请求体参数
+                data: {
+                    username: 'admin',
+                    password: 'aaa'
+                }
+            }).then(res => {
+                // 响应
+                console.log(res);
+                // 响应状态码 200
+                console.log(res.status);
+                // 响应字符串 ok
+                console.log(res.statusText);
+                // 响应头
+                console.log(res.headers);
+                // 响应体
+                console.log(res.data);
+            })
+        }
+    </script>
+</body>
+
+</html>
