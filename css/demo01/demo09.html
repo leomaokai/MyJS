@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="dvi1"></div>
+    <div id="dvi2"></div>
+    <div id="dvi3"></div>
+    <div id="dvi4"></div>
+    <div id="dvi5"></div>
+
+    <span id="span1">hello</span>
+    <span id="span2">world</span>
+    <span id="span3">disply-----------</span>
+    <span id="span4">+++++++++++++++++++++++++</span>
+</body>
+
+</html>
+
+<style>
+    /* 
+        block: 块级元素 : 独占一行 h p div li  可以设置宽高
+        inline: 行内元素 : 不独占一行 span a img 内容有多大,它有多大
+        行内元素可以被包含在块级元素中,反之不行
+
+        inline-block : 保持块元素的特性,但是不独占一行
+        none : 消失
+     */
+
+    div {
+        width: 100px;
+        height: 100px;
+        border: 5px solid red;
+        margin: 10px;
+    }
+
+    span {
+        border: 10px solid yellow;
+        margin-left: 10px;
+    }
+
+    #span2 {
+        width: 50px;
+        height: 100px;
+        display: inline-block;
+    }
+
+    #span2 {
+        width: 100px;
+        height: 50px;
+        display: inline-block;
+    }
+
+    #span4 {
+        width: 100px;
+        height: 100px;
+        display: block;
+    }
+</style>

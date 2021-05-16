@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="div0"></div>
+    <div class="div1"></div>
+    <div class="div2"></div>
+    <div class="div3"></div>
+</body>
+
+</html>
+<style>
+    div {
+        width: 1500px;
+        height: 500px;
+        border: 5px solid red;
+        margin-top: 10px;
+        /* 默认全部平铺 */
+        background-image: url("hhxx.jpg");
+    }
+
+    .div1 {
+        /* 水平平铺 */
+        background-repeat: repeat-x;
+    }
+
+    .div2 {
+        /* 垂直平铺 */
+        background-repeat: repeat-y;
+    }
+
+    .div3 {
+        /* 不平铺 */
+        background-repeat: no-repeat;
+    }
+</style>

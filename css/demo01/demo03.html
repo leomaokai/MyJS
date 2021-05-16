@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>绝对定位</div>
+    <div>固定定位</div>
+</body>
+
+</html>
+<style>
+    /* 
+        固定定位
+     */
+    body {
+        height: 1000px;
+    }
+
+    div:nth-of-type(1) {
+        width: 100px;
+        height: 100px;
+        background: red;
+        text-align: center;
+        line-height: 100px;
+        /* 绝对定位 */
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+
+    div:nth-of-type(2) {
+        width: 50px;
+        height: 50px;
+        background: green;
+        text-align: center;
+        line-height: 50px;
+        /* 固定定位 */
+        position: fixed;
+        right: 0;
+        bottom: 0;
+    }
+</style>

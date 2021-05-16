@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="div1">div1</div>
+        <div class="div2">div2</div>
+        <div class="div3">div3</div>
+        <div class="div4">div4</div>
+
+        <!-- 解决父级边框塌陷问题 -->
+        <!-- <div class="clear"></div> -->
+    </div>
+</body>
+
+</html>
+
+<style>
+    /* 
+        float
+     */
+    div {
+        margin: 10px;
+        padding: 5px;
+    }
+
+    #app {
+        border: 1px solid red;
+        /* 解决父级边框塌陷问题 */
+        /* 在父级元素中增加 overflow */
+        /* overflow: hidden; */
+    }
+
+    /* 解决父级边框塌陷问题 */
+    /* 添加一个伪类 */
+    #app:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+
+    .div1 {
+        border: 1px dashed blue;
+        display: inline-block;
+        height: 400px;
+        float: left;
+    }
+
+    .div2 {
+        border: 1px dashed blue;
+        display: inline-block;
+        height: 300px;
+        float: left;
+    }
+
+    .div3 {
+        border: 1px dashed blue;
+        display: inline-block;
+        height: 220px;
+        float: right;
+    }
+
+    .div4 {
+        border: 1px dashed blue;
+        display: inline-block;
+        float: right;
+
+        /* 右侧不能有浮动,否则按 block 排 */
+        /* clear: right; */
+        /* 左侧不能有浮动,否则按 block 排 */
+        /* clear: left; */
+        /* 两侧不能有浮动 */
+        clear: both;
+    }
+
+    /* 
+    .clear {
+        clear: both;
+        margin: 0;
+        padding: 0;
+    } */
+</style>

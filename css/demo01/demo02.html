@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        <div id="first">hello</div>
+        <div id="second">world</div>
+        <div id="third">css</div>
+    </div>
+</body>
+
+</html>
+<style>
+    /* 
+        绝对定位
+        相对与父级或浏览器的位置偏移,绝对定位的话,
+        它不在标准文档流中,原来的位置会被保留
+        1.没有父级元素定位的前提下,相对于浏览器定位
+        2.若父级元素存在定位,通常相对于父级元素偏移
+        3.在父级元素范围内移动
+     */
+    div {
+        margin: 10px;
+        padding: 5px;
+        font-size: 20px;
+        line-height: 25px;
+    }
+
+    #box {
+        border: 2px solid red;
+        padding: 0;
+        /* 父级元素使用相对定位 */
+        position: relative;
+    }
+
+    #first {
+        background: greenyellow;
+        border: 1px solid black;
+    }
+
+    #second {
+        background: red;
+        border: 1px solid black;
+        /* 绝对定位 */
+        position: absolute;
+        left: 100px;
+        top: 10px;
+    }
+
+    #third {
+        background: bisque;
+        border: 1px solid black;
+    }
+</style>

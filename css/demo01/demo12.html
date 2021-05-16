@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li><img src="./hhxx.jpg"></li>
+            <li class="tipText">好好学习</li>
+            <li class="tipBj"></li>
+            <li>时间 2020.10.10</li>
+        </ul>
+    </div>
+</body>
+
+</html>
+
+
+<style>
+    #app {
+        width: 300px;
+        overflow: hidden;
+        border: 1px solid black;
+        font-size: 12px;
+        line-height: 25px;
+    }
+
+    ul,
+    li {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    #app ul {
+        /* 父级元素相对定位 */
+        position: relative;
+    }
+
+    .tipText,
+    .tipBj {
+        position: absolute;
+        width: 300px;
+        height: 25px;
+        top: 200px;
+    }
+
+    .tipBj {
+        background: gray;
+        /* 层级设置 */
+        z-index: 1;
+
+        /* 透明度设置 */
+        opacity: 0.5;
+    }
+
+    .tipText {
+        z-index: 2;
+    }
+</style>
